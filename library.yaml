@@ -10,6 +10,9 @@ default_dirs:
     - global: ~/.claude/commands/
 
 library:
-  skills: []
+  skills:
+    - name: stripe-integration
+      description: Guia E2E completa para Stripe. Setup, checkout, suscripciones, facturacion, portal, recovery, analytics, Connect y compliance Espana (IVA + VeriFactu + LOPDGDD).
+      source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/skills/stripe-integration/SKILL.md
   agents: []
   prompts: []
