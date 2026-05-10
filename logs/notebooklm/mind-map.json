@@ -1,0 +1,107 @@
+{
+  "name": "Habilidad Meta: La Librería",
+  "children": [
+    {
+      "name": "Problema: Desorden Agéntico",
+      "children": [
+        {
+          "name": "Duplicación de habilidades"
+        },
+        {
+          "name": "Prompts desactualizados"
+        },
+        {
+          "name": "Múltiples bases de código"
+        },
+        {
+          "name": "Falta de sincronización en equipos"
+        }
+      ]
+    },
+    {
+      "name": "Solución: La Librería",
+      "children": [
+        {
+          "name": "Punto de referencia único"
+        },
+        {
+          "name": "Archivo YAML de configuración"
+        },
+        {
+          "name": "Distribución privada (Git)"
+        },
+        {
+          "name": "Independiente del código (Agent-first)"
+        }
+      ]
+    },
+    {
+      "name": "Primitivas Agénticas",
+      "children": [
+        {
+          "name": "Skills (Capacidades crudas)"
+        },
+        {
+          "name": "Agents (Escala y paralelismo)"
+        },
+        {
+          "name": "Prompts (Orquestación)"
+        }
+      ]
+    },
+    {
+      "name": "Flujo de Trabajo (Workflow)",
+      "children": [
+        {
+          "name": "Build (Construir)"
+        },
+        {
+          "name": "Catalog (Añadir a librería)"
+        },
+        {
+          "name": "Distribute (Sincronizar dispositivos)"
+        },
+        {
+          "name": "Use (Instalar y ejecutar)"
+        }
+      ]
+    },
+    {
+      "name": "Comandos de la API",
+      "children": [
+        {
+          "name": "Add (Agregar referencias)"
+        },
+        {
+          "name": "Use (Instalar local/global)"
+        },
+        {
+          "name": "Push (Actualizar fuente)"
+        },
+        {
+          "name": "List/Search (Explorar)"
+        },
+        {
+          "name": "Sync (Sincronizar código)"
+        }
+      ]
+    },
+    {
+      "name": "Beneficios Clave",
+      "children": [
+        {
+          "name": "Sincronización multi-dispositivo"
+        },
+        {
+          "name": "Control de versiones simplificado"
+        },
+        {
+          "name": "Seguridad en repositorios privados"
+        },
+        {
+          "name": "Escalabilidad para orquestadores"
+        }
+      ]
+    }
+  ]
+}

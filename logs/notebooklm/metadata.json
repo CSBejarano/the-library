@@ -1,0 +1,26 @@
+{
+  "video_id": "_vpNQ6IwP9w",
+  "title": "The Library Meta-Skill: How I Distribute PRIVATE Skills, Agents and Prompts",
+  "full_title": "The Library Meta-Skill: How I Distribute PRIVATE Skills, Agents and Prompts",
+  "channel": "IndyDevDan",
+  "channel_id": "UC_x36zCEGilGpB1m-V4gmjg",
+  "channel_url": "https://www.youtube.com/channel/UC_x36zCEGilGpB1m-V4gmjg",
+  "uploader": "IndyDevDan",
+  "upload_date": "20260316",
+  "upload_date_formatted": "March 16, 2026",
+  "duration_seconds": 1592,
+  "duration_string": "26:32",
+  "view_count": 10710,
+  "like_count": 483,
+  "comment_count": 56,
+  "channel_follower_count": 124000,
+  "description": "Engineers... If you're still COPY-PASTING SKILLS between repos, you've already LOST the agent race. Your competitors have a SYSTEM. You don't.\n\n🔥 The Library is the meta-skill that changes EVERYTHING about how you distribute your private skills, agents, and prompts across devices, teams, and agents.\n\n🎥 VIDEO REFERENCES\n• The Library Codebase: https://github.com/disler/the-library\n• Stripe's Agentic Layer: https://youtu.be/V5A1IU8VVp4\n• Claude Code Competitor: https://youtu.be/f8cfH5XX-XU\n• Meta-Agentics: https://youtu.be/zTcDwqopvKE\n\n🚀 MASTER AGENTIC CODING\n- Tactical Agentic Coding: https://agenticengineer.com/tactical-agentic-coding?y=_vpNQ6IwP9w\n\nYour best AI agent skills are scattered across ten plus code bases. They're out of sync, duplicated, and impossible to coordinate across your engineering team. The library meta-skill solves this with a single library.yaml config file that acts as your personal AI package manager for skill distribution.\n\n🛠️ Think of it like a package.json but for your agentics. The library.yaml stores references to private GitHub repositories and local file paths, creating a single source of truth for all your Claude Code skills, Codex CLI skills, and agent capabilities. No more copying, no more version drift, no more chaos.\n\n🚀 In this video, we walk through the full workflow: build your skills natively in your value-generating repos, catalog them with the library add command, then distribute and reuse them anywhere. Watch as we sync meta-agentics across a local machine and a Mac Mini agent device in real time, proving this skill management system works across any device or cloud sandbox.\n\n🔐 This is about PRIVATE skill distribution. Your top-notch skills, agents, and prompts should absolutely be private. The best agentic solutions are behind closed doors inside cracked teams building with agents. The library gives you a skill registry to distribute these privately and securely across your entire operation.\n\n💡 The library is a pure agent-first application. No code, just a skill and a YAML config. That means any agent can run the entire workflow: add, use, push, list, search, and sync. This is the future of agentic engineering, where entire applications live inside a single skill.\n\n🧠 Key capabilities:\n\n- Add skills, agents, and prompts to your catalog from any repo\n- Use them locally or globally across any device\n- Push updates back to the source repository\n- Sync to pull the latest versions everywhere\n- Search and list your entire skill registry instantly\n\n🌟 Whether you're scaling from custom agents to orchestrator agents, operating across multiple devices, or coordinating a team of engineers with their own agents, the library meta-skill is the missing piece. Stop managing your agentics the sloppy way. Build, catalog, distribute, use.\n\nChapters\n\n00:00 The Library Meta Skill\n01:12 The Problem\n07:13 Meta Skill on Engineer's Device\n17:17 Meta Skill on Mac Mini Agent\n\nStay focused and keep building.\n- Dan\n\n#metaskill #agenticengineering #agenticcoding",
+  "tags": [],
+  "categories": [
+    "Science & Technology"
+  ],
+  "url": "https://www.youtube.com/watch?v=_vpNQ6IwP9w",
+  "thumbnail": "https://i.ytimg.com/vi_webp/_vpNQ6IwP9w/maxresdefault.webp",
+  "language": "en",
+  "extracted_at": "2026-03-17T11:42:40.441971"
+}
