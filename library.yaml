@@ -11,6 +11,9 @@ default_dirs:
 
 library:
   skills:
+    - name: pr-review
+      description: PR review formal con GitHub CLI. Usa gh pr review (no gh pr comment). Decision tree para APPROVE/REQUEST_CHANGES/COMMENT. Formato estructurado con findings priorizados. Triggers pr review, review pr, revisar pr, code review, gh pr review.
+      source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/skills/pr-review/SKILL.md
     - name: stripe-integration
       description: Guia E2E completa para Stripe. Setup, checkout, suscripciones, facturacion, portal, recovery, analytics, Connect y compliance Espana (IVA + VeriFactu + LOPDGDD).
       source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/skills/stripe-integration/SKILL.md
