@@ -9,13 +9,250 @@ default_dirs:
     - default: .claude/commands/
     - global: ~/.claude/commands/
 
+# Catálogo curado: ~30 entries que apuntan a CSBejarano/claude-code-template
+# como único repo source-of-truth. CSBejarano/the-library (fork) está deprecado.
+# Source-of-truth: https://github.com/CSBejarano/claude-code-template
+# Curación rationale: ai_docs/state/library-curation-rationale.md (working doc)
+# Decisión arquitectónica: ai_docs/state/DECISIONS.md → D021
+
 library:
   skills:
-    - name: pr-review
-      description: PR review formal con GitHub CLI. Usa gh pr review (no gh pr comment). Decision tree para APPROVE/REQUEST_CHANGES/COMMENT. Formato estructurado con findings priorizados. Triggers pr review, review pr, revisar pr, code review, gh pr review.
-      source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/skills/pr-review/SKILL.md
+    # === Backend / Python ===
+    - name: fastapi
+      description: Framework Python de alto rendimiento para APIs REST. Validacion automatica con Pydantic, documentacion OpenAPI, dependency injection y async nativo.
+      source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/skills/fastapi/SKILL.md
+      requires: []
+
+    - name: clean-arch
+      description: Clean Architecture (Hexagonal/Ports & Adapters) para Python. Separacion de capas, dependency injection y testabilidad con FastAPI.
+      source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/skills/clean-arch/SKILL.md
+      requires: [skill:fastapi]
+
+    - name: pydantic-ai
+      description: Framework Python para agentes IA con type safety. Tools tipados, outputs estructurados y soporte multi-modelo (OpenAI, Anthropic, Gemini).
+      source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/skills/pydantic-ai/SKILL.md
+      requires: []
+
+    - name: pytest
+      description: Framework de testing para Python con fixtures, markers y parametrizacion. Crea tests unitarios, integracion y E2E escalables.
+      source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/skills/pytest/SKILL.md
+      requires: []
+
+    # === Frontend / Web ===
+    - name: nextjs
+      description: Framework React full-stack con App Router, Server Components y optimizaciones automaticas. Next.js 14+ para produccion.
+      source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/skills/nextjs/SKILL.md
+      requires: []
+
+    - name: react-19
+      description: React 19 con Server Components, Server Actions y hook use(). Construye interfaces modernas con RSC, streaming y Suspense.
+      source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/skills/react-19/SKILL.md
+      requires: []
+
+    - name: tailwind
+      description: Patrones y utilidades para Tailwind CSS v4. Incluye dark mode, componentes tipados, sistema de temas y diseno responsive.
+      source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/skills/tailwind/SKILL.md
+      requires: []
+
+    # === Database / Backend infrastructure ===
+    - name: supabase
+      description: Plataforma backend open-source con PostgreSQL, auth, storage, edge functions y realtime. Cliente Python sync/async incluido.
+      source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/skills/supabase/SKILL.md
+      requires: []
+
+    - name: rls
+      description: Row Level Security (RLS) para PostgreSQL y Supabase. Control de acceso a nivel de fila que previene OWASP A01:2025 Broken Access Control.
+      source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/skills/rls/SKILL.md
+      requires: [skill:supabase]
+
+    # === Payments / Invoicing ===
     - name: stripe-integration
       description: Guia E2E completa para Stripe. Setup, checkout, suscripciones, facturacion, portal, recovery, analytics, Connect y compliance Espana (IVA + VeriFactu + LOPDGDD).
       source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/skills/stripe-integration/SKILL.md
-  agents: []
+      requires: [skill:fastapi, skill:spanish-invoicing]
+
+    - name: spanish-invoicing
+      description: Facturacion espanola con TicketBAI, VeriFactu, cadena hash, NIF/CIF validation, IVA tipos, series numericas y politicas RLS multi-tenant.
+      source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/skills/spanish-invoicing/SKILL.md
+      requires: [skill:rls]
+
+    # === DevOps / Infra ===
+    - name: github
+      description: Integracion completa con GitHub CLI y API. Gestion de repositorios, issues, PRs, branches, releases y GitHub Actions.
+      source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/skills/github/SKILL.md
+      requires: []
+
+    - name: cloudflare-tunnel
+      description: >-
+        Create and manage Cloudflare tunnels to securely expose local services to the
+        internet. Use when you need a public URL for localhost, testing webhooks,
+        demoing without deploying, or remote access to internal services. Supports
+        named tunnels with persistent subdomains, multi-service routing via ingress
+        rules, DNS routing, and Zero Trust integration. Triggers: cloudflared, tunnel,
+        expose localhost, public URL, webhook testing, ngrok alternative.
+      source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/skills/cloudflare-tunnel/SKILL.md
+      requires: []
+
+    - name: deploy
+      description: >-
+        Multi-platform deployment skill. Supports Vercel, Railway, Supabase, Docker
+        and Cloudflare Pages. Auto-detects project type and platform from config
+        files. Pre-deploy checks (tests, lint, build). Post-deploy verification
+        (health check, smoke test). Rollback guidance on failure. Triggers: deploy,
+        desplegar, ship, push to production, release.
+      source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/skills/deploy/SKILL.md
+      requires: []
+
+    - name: monitor
+      description: >-
+        Post-deploy observability skill. Health checks, uptime monitoring, log
+        analysis, error tracking and performance metrics. Supports Vercel, Railway,
+        Supabase and generic HTTP services. Quick diagnosis of production issues.
+        Triggers: monitor, observability, health check, uptime, logs, alertas.
+      source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/skills/monitor/SKILL.md
+      requires: []
+
+    # === Testing / Browser automation ===
+    - name: playwright
+      description: Browser automation con 3 modos -- CLI (direct execution), Guide (token-efficient patterns), MCP (22 MCP tools). Testing, scraping, screenshots, forms.
+      source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/skills/playwright/SKILL.md
+      requires: []
+
+    # === Documentation / Diagrams ===
+    - name: mermaid
+      description: >-
+        Render Mermaid code to PNG, SVG or PDF diagrams via mmdc CLI. Supports
+        flowchart, sequence, class, ER, gantt, pie, git graph, timeline and mindmap.
+        Themes: default, dark, forest, neutral. Integrates with markdown docs and
+        PRs. Triggers: mermaid, diagram, flowchart, sequence diagram, ER, gantt,
+        mmdc, render diagram, mindmap.
+      source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/skills/mermaid/SKILL.md
+      requires: []
+
+    - name: markdown
+      description: Guias de Markdown y GFM (GitHub Flavored Markdown). Authoring, frontmatter, linting, documentacion estructurada y templates para proyectos.
+      source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/skills/markdown/SKILL.md
+      requires: []
+
+    - name: pdf-to-docx
+      description: >-
+        Bidirectional PDF to DOCX conversion. Uses pdf2docx (Python) for PDF to DOCX
+        and LibreOffice headless for DOCX to PDF. Batch conversion, preserve images,
+        extract text-only, OCR fallback with pytesseract. Use for commercial
+        proposals, contracts, invoices, reports. Triggers: pdf to docx, docx to pdf,
+        convert pdf, pdf2docx, batch convert.
+      source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/skills/pdf-to-docx/SKILL.md
+      requires: []
+
+    # === Security / Privacy ===
+    - name: owasp
+      description: OWASP Top 10:2025 Security Audit (A01-A10). Incluye A03 Supply Chain y A10 Exceptional Conditions. Audita aplicaciones web, APIs y codigo contra vulnerabilidades.
+      source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/skills/owasp/SKILL.md
+      requires: []
+
+    - name: aepd-privacidad
+      description: Consultor Experto en Proteccion de Datos. RGPD, LOPDGDD, AEPD, ENS, AI Act, auditorias de privacidad, DPO, brechas de seguridad, EIPD, contratos DPA.
+      source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/skills/aepd-privacidad/SKILL.md
+      requires: []
+
+    - name: llm-security-checklist
+      description: >-
+        LLM security audit checklist for AI agent systems. Triggers: security audit,
+        security checklist, llm security review, agent security assessment, owasp
+        check.
+      source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/skills/llm-security-checklist/SKILL.md
+      requires: [skill:owasp]
+
+    # === Code analysis / review ===
+    - name: code-analysis
+      description: Analisis estatico de codigo, deteccion de patrones, metricas de complejidad, catalogos de anti-patterns y guias de refactoring para auditorias de calidad.
+      source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/skills/code-analysis/SKILL.md
+      requires: []
+
+    - name: pr-review
+      description: PR review formal con GitHub CLI. Usa gh pr review (no gh pr comment). Decision tree para APPROVE/REQUEST_CHANGES/COMMENT. Formato estructurado con findings priorizados. Triggers pr review, review pr, revisar pr, code review, gh pr review.
+      source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/skills/pr-review/SKILL.md
+      requires: [skill:github]
+
+  agents:
+    # === Senior engineers (standalone, sin acoplamiento al template) ===
+    - name: backend
+      description: Senior Backend Engineer experto en FastAPI, SQLAlchemy, PostgreSQL y Clean Architecture. Especialista en RLS, multi-tenancy, async patterns y PydanticAI.
+      source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/agents/backend.md
+      requires:
+        - skill:fastapi
+        - skill:clean-arch
+        - skill:pydantic-ai
+        - skill:supabase
+        - skill:pytest
+        - skill:aepd-privacidad
+        - skill:github
+        - skill:code-analysis
+        - skill:spanish-invoicing
+        - skill:stripe-integration
+
+    - name: frontend
+      description: Senior Frontend Engineer experto en React, TypeScript, Tailwind CSS y arquitecturas de componentes. Especialista en UI/UX, accesibilidad, performance y estado de aplicaciones modernas.
+      source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/agents/frontend.md
+      requires:
+        - skill:react-19
+        - skill:nextjs
+        - skill:tailwind
+        - skill:playwright
+        - skill:aepd-privacidad
+        - skill:github
+        - skill:code-analysis
+        - skill:clean-arch
+
+    - name: testing
+      description: Senior QA Engineer experto en testing strategies, pytest, test automation y quality assurance. Especialista en unit tests, integration tests, E2E, mocking, fixtures y coverage.
+      source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/agents/testing.md
+      requires:
+        - skill:pytest
+        - skill:owasp
+        - skill:rls
+        - skill:playwright
+        - skill:aepd-privacidad
+        - skill:github
+        - skill:code-analysis
+
+    - name: infra
+      description: Senior DevOps/Infrastructure Engineer experto en Docker, CI/CD, Kubernetes, Terraform y cloud platforms. Especialista en automatizacion, deployment pipelines, observabilidad y seguridad de infraestructura.
+      source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/agents/infra.md
+      requires:
+        - skill:github
+        - skill:deploy
+        - skill:monitor
+        - skill:cloudflare-tunnel
+
+    # === Reviewers especializados ===
+    - name: quality-reviewer
+      description: Senior Software Engineer especializado en code quality, clean code, design patterns, performance y maintainability. Complementa al review formal con foco en calidad tecnica del codigo.
+      source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/agents/quality-reviewer.md
+      requires:
+        - skill:pytest
+        - skill:clean-arch
+        - skill:github
+        - skill:code-analysis
+        - skill:owasp
+
+    - name: security-reviewer
+      description: Senior Security Engineer especializado en OWASP Top 10, auditorias de seguridad, vulnerabilidades de codigo, auth/authz y secure coding practices.
+      source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/agents/security-reviewer.md
+      requires:
+        - skill:owasp
+        - skill:rls
+        - skill:supabase
+        - skill:aepd-privacidad
+        - skill:github
+        - skill:code-analysis
+
+    # === Compliance / Privacy ===
+    - name: aepd-consultant
+      description: DPO (Data Protection Officer) y Consultor Experto en Proteccion de Datos. Especialista en RGPD, LOPDGDD, AEPD, auditorias de privacidad, matrices de riesgo, clausulas informativas y contratos DPA.
+      source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/agents/aepd-consultant.md
+      requires:
+        - skill:aepd-privacidad
+        - skill:code-analysis
+
   prompts: []
