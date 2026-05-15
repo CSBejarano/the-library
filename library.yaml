@@ -255,4 +255,15 @@ library:
         - skill:aepd-privacidad
         - skill:code-analysis
 
-  prompts: []
+  prompts:
+    # === Scaffolding / Meta ===
+    - name: new-system
+      description: >-
+        Meta-comando para arrancar un sistema StudioTek nuevo de punta a punta:
+        discovery en 00-studiotek_os, research consolidado (5 scouts), diseno
+        visual con diagramas Mermaid + tree y gate humano, scaffold del repo
+        (4 stacks: python-batch, fullstack-next, api-service, cli) y git init.
+        Sucesor portable del pipeline idea-to-system. Triggers: new-system,
+        crear sistema, scaffold repo, nuevo proyecto StudioTek.
+      source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/commands/new-system.md
+      requires: []
