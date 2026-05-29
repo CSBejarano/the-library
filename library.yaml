@@ -273,6 +273,18 @@ library:
         - skill:code-analysis
 
   prompts:
+    # === ADW / Installer ===
+    - name: instalador_adw
+      description: >-
+        Instala ADW desde el repo destino (target-side) con source hibrido
+        (ADW_SOURCE_ROOT, checkout local o clone a ~/.cache), dry-run obligatorio,
+        confirmacion explicita, backups, ajuste de .gitignore y provision de deps
+        Python. Invoca el instalador deterministico (no reimplementa). Complementa
+        install_adw_in_target_repo (push source-side). Triggers instalador adw,
+        instalar adw, bootstrap adw target.
+      source: https://github.com/CSBejarano/adw-minion-pi/blob/main/.claude/commands/instalador_adw.md
+      requires: []
+
     # === Scaffolding / Meta ===
     - name: new-system
       description: >-
