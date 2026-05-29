@@ -17,6 +17,17 @@ default_dirs:
 
 library:
   skills:
+    # === Session / Context ===
+    - name: continue-session
+      description: Sincronizacion de estado del proyecto al inicio/cierre de sesion. Lee state files, descubre componentes, actualiza GOAL.md/PROGRESS.yaml y persiste contexto en Engram. Contraparte READ+WRITE de /prime.
+      source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/skills/continue-session/SKILL.md
+      requires: []
+
+    - name: prime
+      description: Cargador rapido de contexto del proyecto (~30s). Descubre agents, skills, commands y state files dinamicamente. Read-only, nunca modifica archivos. Version ligera de /continue-session.
+      source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/skills/prime/SKILL.md
+      requires: []
+
     # === Backend / Python ===
     - name: fastapi
       description: Framework Python de alto rendimiento para APIs REST. Validacion automatica con Pydantic, documentacion OpenAPI, dependency injection y async nativo.
