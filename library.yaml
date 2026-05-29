@@ -9,11 +9,12 @@ default_dirs:
     - default: .claude/commands/
     - global: ~/.claude/commands/
 
-# Catálogo curado: ~30 entries que apuntan a CSBejarano/claude-code-template
-# como único repo source-of-truth. CSBejarano/the-library (fork) está deprecado.
-# Source-of-truth: https://github.com/CSBejarano/claude-code-template
+# Catálogo curado que apunta a CSBejarano/claude-code-template como source-of-truth
+# de componentes generales reutilizables. CSBejarano/the-library (fork) está deprecado.
+# Source-of-truth general: https://github.com/CSBejarano/claude-code-template
+# Segunda fuente por dominio (runtime ADW): CSBejarano/adw-minion-pi → ver D022.
 # Curación rationale: ai_docs/state/library-curation-rationale.md (working doc)
-# Decisión arquitectónica: ai_docs/state/DECISIONS.md → D021
+# Decisiones arquitectónicas: ai_docs/state/DECISIONS.md → D021 (source-of-truth) y D022 (multi-source ADW)
 
 library:
   skills:
