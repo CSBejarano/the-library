@@ -274,6 +274,52 @@ library:
         - skill:code-analysis
 
   prompts:
+    # === Session / Context (commands autocontenidos, convención user_docs/ai_docs) ===
+    - name: continue-session
+      description: >-
+        Command (slash) de sincronizacion de estado al inicio/cierre de sesion.
+        Lee+escribe estado en user_docs/state_docs/, descubre componentes dinamicamente,
+        persiste en Engram (project=basename). Version autocontenida (no thin-wrapper).
+        Contraparte READ+WRITE de /prime.
+      source: /Users/cristianbejaranomendez/Developer/Personal/correo/.claude/commands/continue-session.md
+      requires: []
+
+    - name: prime
+      description: >-
+        Command (slash) de carga rapida de contexto (~30s), SOLO LECTURA. Descubre agents,
+        skills, commands, modulos (apps/src/) y specs/ en runtime; lee estado de
+        user_docs/state_docs/ y docs de producto. Version ligera de /continue-session.
+      source: /Users/cristianbejaranomendez/Developer/Personal/correo/.claude/commands/prime.md
+      requires: []
+
+    # === Methodology / Workflow (commands autocontenidos) ===
+    - name: prd
+      description: >-
+        Command (slash) generador/actualizador de PRD. Autocontenido (metodologia incrustada,
+        no delega a skill externa). Tipo automation por defecto, output a user_docs/PRD.md,
+        coherencia forzada con DISENO.md, MoSCoW + checklist de calidad. Triggers prd, requisitos.
+      source: /Users/cristianbejaranomendez/Developer/Personal/correo/.claude/commands/prd.md
+      requires: []
+
+    - name: sdd
+      description: >-
+        Command (slash) Spec Driven Design autocontenido (7 fases con subagentes, contexto
+        aislado, Engram-first, TDD, verify loop). Lee PRD/DISENO, escribe artefactos en
+        specs/<feature>/ y hace handoff al ADW adw-minion-pi. El orquestador no codifica.
+      source: /Users/cristianbejaranomendez/Developer/Personal/correo/.claude/commands/sdd.md
+      requires: [prompt:prd]
+
+    # === Scaffolding / Meta ===
+    - name: new-project
+      description: >-
+        Command (slash) de bootstrap completo de proyecto nuevo: pregunta la idea via
+        AskUserQuestion, decide arquitectura, prepara credenciales (SETUP_CREDENCIALES.md),
+        disena (DISENO.md), scaffoldea la estructura estandar (user_docs/ai_docs/apps/src/specs),
+        instala los commands de trabajo via /library y genera el PRD. Reproduce el playbook
+        StudioTek de la idea al PRD. Triggers new-project, nuevo proyecto, bootstrap, arrancar proyecto.
+      source: /Users/cristianbejaranomendez/Developer/Personal/correo/.claude/commands/new-project.md
+      requires: [prompt:prime, prompt:continue-session, prompt:prd, prompt:sdd]
+
     # === ADW / Installer ===
     - name: instalador_adw
       description: >-
