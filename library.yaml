@@ -88,6 +88,12 @@ library:
       source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/skills/spanish-invoicing/SKILL.md
       requires: [skill:rls]
 
+    # === Comercial / Propuestas ===
+    - name: commercial-proposal
+      description: Generacion de propuestas comerciales y presupuestos profesionales en PDF. Branding corporativo (brands/<empresa>), desglose de fases de proyecto, pricing con IVA y documentos empresariales listos para cliente. Motor reportlab. Usado por el prompt resumen-ejecutivo-audio para el PDF brandeado.
+      source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/skills/commercial-proposal/SKILL.md
+      requires: []
+
     # === DevOps / Infra ===
     - name: github
       description: Integracion completa con GitHub CLI y API. Gestion de repositorios, issues, PRs, branches, releases y GitHub Actions.
@@ -299,6 +305,17 @@ library:
       requires: []
 
     # === Reuniones / Cliente-facing ===
+    - name: procesar-reunion
+      description: >-
+        Procesa el audio de una reunion de cliente end-to-end: transcribe (Whisper),
+        limpia, estructura por interlocutor y genera dos informes (mini-PRD +
+        epicas/historias/issues de GitHub). Es el pipeline base de
+        sistema_reuniones_clientes; reutiliza su adapter whisper.py via uv run.
+        Portable, runtime, valido para cualquier repo cliente. Triggers procesar
+        reunion, transcribir reunion, audio a informe, mini-prd reunion.
+      source: https://github.com/CSBejarano/sistema-reuniones-clientes/blob/main/.claude/commands/procesar-reunion.md
+      requires: []
+
     - name: resumen-ejecutivo-audio
       description: >-
         Procesa el audio de una reunion de cliente end-to-end y produce un resumen
@@ -309,4 +326,4 @@ library:
         runtime, valido para cualquier repo cliente. Triggers resumen ejecutivo
         audio, procesar reunion ejecutivo, audio a resumen ejecutivo.
       source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/commands/resumen-ejecutivo-audio.md
-      requires: []
+      requires: [skill:commercial-proposal, prompt:procesar-reunion]
