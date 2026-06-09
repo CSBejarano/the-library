@@ -313,7 +313,7 @@ library:
         sistema_reuniones_clientes; reutiliza su adapter whisper.py via uv run.
         Portable, runtime, valido para cualquier repo cliente. Triggers procesar
         reunion, transcribir reunion, audio a informe, mini-prd reunion.
-      source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/commands/procesar-reunion.md
+      source: https://github.com/CSBejarano/sistema-reuniones-clientes/blob/main/.claude/commands/procesar-reunion.md
       requires: []
 
     - name: resumen-ejecutivo-audio
