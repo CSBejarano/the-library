@@ -297,3 +297,16 @@ library:
         crear sistema, scaffold repo, nuevo proyecto StudioTek.
       source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/commands/new-system.md
       requires: []
+
+    # === Reuniones / Cliente-facing ===
+    - name: resumen-ejecutivo-audio
+      description: >-
+        Procesa el audio de una reunion de cliente end-to-end y produce un resumen
+        ejecutivo cliente-facing (Markdown + PDF brandeado) con propuesta de
+        presupuesto anclada a presupuestos previos. Reutiliza el pipeline de
+        transcripcion Whisper de sistema_reuniones_clientes (uv run) y aplica el
+        objetivo, formato y reglas de calidad de un resumen ejecutivo. Portable,
+        runtime, valido para cualquier repo cliente. Triggers resumen ejecutivo
+        audio, procesar reunion ejecutivo, audio a resumen ejecutivo.
+      source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/commands/resumen-ejecutivo-audio.md
+      requires: []
