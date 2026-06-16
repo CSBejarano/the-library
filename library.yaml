@@ -90,7 +90,7 @@ library:
 
     # === Comercial / Propuestas ===
     - name: commercial-proposal
-      description: Generacion de propuestas comerciales y presupuestos profesionales en PDF. Branding corporativo (brands/<empresa>), desglose de fases de proyecto, pricing con IVA y documentos empresariales listos para cliente. Motor reportlab. Usado por el prompt resumen-ejecutivo-audio para el PDF brandeado.
+      description: Presupuestos y resumenes ejecutivos cliente-facing con el look canonico StudioTek (HTML+CSS -> weasyprint). Brandbar, meta-box, fases e inversion, descuento, plan de pago, callouts. Builders data-driven (proposal) y markdown-driven (executive-summary). Usado por resumen-ejecutivo[-audio] y procesar-reunion para el PDF brandeado.
       source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/skills/commercial-proposal/SKILL.md
       requires: []
 
@@ -198,6 +198,18 @@ library:
       source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/skills/sdd/SKILL.md
       requires: []
 
+    # === Reuniones / Meeting intelligence ===
+    - name: meeting-intelligence
+      description: >-
+        Procesamiento e inteligencia de reuniones. Parsea transcripciones (markdown,
+        txt, audio_transcript), extrae entidades (personas, fechas, compromisos),
+        clasifica topics (tecnico/negocio/organizativo) y genera informes
+        estructurados con decisiones, action items priorizados y resumen ejecutivo.
+        Triggers meeting intelligence, inteligencia de reunion, action items,
+        decisiones, resumen reunion.
+      source: https://github.com/CSBejarano/studiotek_os/blob/main/.claude/skills/meeting-intelligence/SKILL.md
+      requires: []
+
   agents:
     # === Senior engineers (standalone, sin acoplamiento al template) ===
     - name: backend
@@ -279,6 +291,72 @@ library:
         - skill:aepd-privacidad
         - skill:code-analysis
 
+    # === Legal / NDA pipeline (orquestacion jerarquica 3 niveles) ===
+    - name: nda-orchestrator
+      description: >-
+        NDA pipeline (apex): orquesta la generacion de un NDA bilateral
+        RGPD-compliant para un cliente. Coordina nda-research-lead + nda-legal-lead,
+        gestiona el gate humano y los gates de calidad G1/G3. No investiga ni redacta
+        — delega todo.
+      source: https://github.com/CSBejarano/studiotek_os/blob/main/.claude/agents/legal/nda-orchestrator.md
+      requires:
+        - agent:nda-research-lead
+        - agent:nda-legal-lead
+
+    - name: nda-research-lead
+      description: >-
+        NDA pipeline (research lead): coordina scout-tavily + scout-perplexity para
+        identificar al cliente y consolida CLIENT-PROFILE.yaml (schema 1.2) con los 6
+        campos de PARTE B, discrepancias y nivel de confianza. No redacta el NDA.
+      source: https://github.com/CSBejarano/studiotek_os/blob/main/.claude/agents/legal/nda-research-lead.md
+      requires:
+        - agent:scout-tavily
+        - agent:scout-perplexity
+
+    - name: nda-legal-lead
+      description: >-
+        NDA pipeline (legal lead): a partir del CLIENT-PROFILE.yaml aprobado coordina
+        legal-doc-generator + legal-reviewer + legal-privacy-auditor y consolida el
+        NDA final nda_<slug>.md aplicando los hallazgos y las reglas de redaccion
+        profesional.
+      source: https://github.com/CSBejarano/studiotek_os/blob/main/.claude/agents/legal/nda-legal-lead.md
+      requires:
+        - agent:legal-doc-generator
+        - agent:legal-reviewer
+        - agent:legal-privacy-auditor
+
+    - name: legal-doc-generator
+      description: "Legal pipeline: genera documentos legales (contratos, facturas, propuestas, politicas de privacidad)."
+      source: https://github.com/CSBejarano/studiotek_os/blob/main/.claude/agents/legal/doc-generator.md
+      requires: []
+
+    - name: legal-reviewer
+      description: "Legal pipeline: revisa documentos generados contra normativa vigente y mejores practicas."
+      source: https://github.com/CSBejarano/studiotek_os/blob/main/.claude/agents/legal/reviewer.md
+      requires: []
+
+    - name: legal-privacy-auditor
+      description: "Legal pipeline: auditoria RGPD/LOPDGDD completa de datos personales, consentimiento y derechos ARCO."
+      source: https://github.com/CSBejarano/studiotek_os/blob/main/.claude/agents/legal/privacy-auditor.md
+      requires: []
+
+    # === Research scouts (reutilizables fuera del pipeline NDA) ===
+    - name: scout-tavily
+      description: >-
+        Scout de web search profundo con Tavily MCP: crawling, extraction de
+        contenido y busqueda avanzada con filtros. Para pipelines de research
+        intensivo. Triggers web search, tavily, crawl, buscar web, articulos.
+      source: https://github.com/CSBejarano/studiotek_os/blob/main/.claude/agents/research/scout-tavily.md
+      requires: []
+
+    - name: scout-perplexity
+      description: >-
+        Scout de razonamiento profundo con Perplexity MCP: investigacion academica,
+        comparativas y analisis de trade-offs. Para pipelines que necesitan analisis
+        riguroso. Triggers perplexity, razonamiento, academico, comparativa, papers.
+      source: https://github.com/CSBejarano/studiotek_os/blob/main/.claude/agents/research/scout-perplexity.md
+      requires: []
+
   prompts:
     # === ADW / Installer ===
     - name: instalador_adw
@@ -327,3 +405,26 @@ library:
         audio, procesar reunion ejecutivo, audio a resumen ejecutivo.
       source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/commands/resumen-ejecutivo-audio.md
       requires: [skill:commercial-proposal, prompt:procesar-reunion]
+
+    - name: parse-call-transcript
+      description: >-
+        Parseo estructurado de transcripciones de llamadas/reuniones (Google Meet,
+        WhatsApp audio, grabaciones) con identificacion precisa de speakers antes de
+        extraer acuerdos, decisiones o generar deliverables. Evita errores de
+        atribucion cuando las voces estan entremezcladas sin etiquetas explicitas.
+        Triggers transcripcion de llamada, transcripcion de reunion, parsear llamada,
+        voces entremezcladas, procesar audio.
+      source: https://github.com/CSBejarano/studiotek_os/blob/main/.claude/commands/parse-call-transcript.md
+      requires: []
+
+    # === Legal / NDA ===
+    - name: nda-cliente
+      description: >-
+        Genera un NDA bilateral RGPD-compliant para un cliente nuevo a partir de su
+        URL + nombre, orquestando un pipeline agentico de 3 niveles (nda-orchestrator
+        -> nda-research-lead + nda-legal-lead -> workers) con gate humano entre
+        research y redaccion, confidencialidad por .gitignore y clasificacion
+        CONFIDENCIAL. Entregable nda_<slug>.md. Triggers nda, nda cliente, acuerdo de
+        confidencialidad, generar nda.
+      source: https://github.com/CSBejarano/studiotek_os/blob/main/.claude/commands/nda-cliente.md
+      requires: [agent:nda-orchestrator]
