@@ -210,6 +210,19 @@ library:
       source: https://github.com/CSBejarano/studiotek_os/blob/main/.claude/skills/meeting-intelligence/SKILL.md
       requires: []
 
+    # === Issues / Project management ===
+    - name: issues-dossier-proyectos
+      description: >-
+        Genera el dossier multi-proyecto de issues de GitHub de TODO StudioTek (clientes +
+        operaciones + productos) en PDF apaisado, una tabla por proyecto, agrupado por
+        Cliente/StudioTek/Sin-issues, ordenado por fase (clientes) o batch/épica (internos), con
+        bandas de sección (banda + header del mismo color) que se repiten al cambiar de página,
+        cards de resumen, zebra por épica y banners de grupo/proyecto. Incluye el motor de
+        maquetación canónico render_dossier.py (HTML apaisado -> weasyprint). READ-ONLY. Triggers
+        issues-dossier-proyectos, dossier de issues, dossier multi-proyecto, issues por proyecto a pdf.
+      source: /Users/cristianbejaranomendez/Developer/StudioTek/30-operaciones/app-control-studiotek/.claude/skills/issues-dossier-proyectos/SKILL.md
+      requires: []
+
   agents:
     # === Senior engineers (standalone, sin acoplamiento al template) ===
     - name: backend
@@ -368,6 +381,18 @@ library:
         install_adw_in_target_repo (push source-side). Triggers instalador adw,
         instalar adw, bootstrap adw target.
       source: https://github.com/CSBejarano/adw-minion-pi/blob/main/.claude/commands/instalador_adw.md
+      requires: []
+
+    # === Issues / Project management ===
+    - name: issues-dossier
+      description: >-
+        Lista los issues de GitHub del proyecto (auto-detecta repo único o
+        multi-repo command-center, u override por args), los clasifica por
+        épica/batch/orden de prioridad de implementación y genera un dossier
+        .md → .pdf (una página por repo, listo para imprimir) con la plantilla
+        canónica de issue StudioTek. Portable, runtime, READ-ONLY. Triggers:
+        issues, dossier de issues, listar issues, clasificar issues, issues a pdf.
+      source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/commands/issues-dossier.md
       requires: []
 
     # === Scaffolding / Meta ===
