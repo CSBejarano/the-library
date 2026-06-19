@@ -442,6 +442,18 @@ library:
       source: https://github.com/CSBejarano/studiotek_os/blob/main/.claude/commands/parse-call-transcript.md
       requires: []
 
+    # === Legal / Contratos ===
+    - name: generar-contrato
+      description: >-
+        Generador de contratos StudioTek: genera el contrato completo de un cliente
+        nuevo (3 tipos: SaaS KairosAI, Fork/white-label, Proyecto personalizado a
+        medida por fases) y el tracker de datos pendientes, en
+        business_ops/legal/contratos/<cliente>/. Soporta clonar de un contrato
+        existente como base y exportar a DOCX via pandoc. Triggers generar contrato,
+        contrato cliente, contrato de software, contrato personalizado, contrato saas.
+      source: /Users/cristianbejaranomendez/.claude/commands/generar-contrato.md
+      requires: []
+
     # === Legal / NDA ===
     - name: nda-cliente
       description: >-
