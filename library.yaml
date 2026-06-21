@@ -137,6 +137,17 @@ library:
       requires: []
 
     # === Documentation / Diagrams ===
+    - name: htmlvspec
+      description: >-
+        Genera un plan de implementacion VISUAL como una unica pagina HTML autocontenida en
+        specs/htmlvspec-<slug>.html: el plan escrito directamente en HTML con tema oscuro, una
+        imagen-diagrama generada por IA (gpt-image-2 de OpenAI) por seccion (hero + por H2)
+        creadas en paralelo y embebidas inline, mas una zona Freeform con HTML/CSS/SVG/JS a
+        medida. Requiere OPENAI_API_KEY. Triggers htmlvspec, spec visual html, plan visual
+        ilustrado, diagramas por seccion. (Skill de terceros: disler/pi-agent-observability.)
+      source: https://github.com/disler/pi-agent-observability/blob/main/.claude/skills/htmlvspec/SKILL.md
+      requires: []
+
     - name: mermaid
       description: >-
         Render Mermaid code to PNG, SVG or PDF diagrams via mmdc CLI. Supports
