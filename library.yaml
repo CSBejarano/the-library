@@ -397,6 +397,18 @@ library:
       source: https://github.com/CSBejarano/adw-minion-pi/blob/main/.claude/commands/instalador_adw.md
       requires: []
 
+    - name: prompt_template
+      description: >-
+        Convierte la Tarea del usuario en una spec fuente (.md en specs/) que sirve de
+        fuente de verdad y, cuando el risk_tier lo amerita, se renderiza como plan visual
+        de implementacion con la skill /htmlvspec. Template runtime PORTABLE: descubre el
+        repo, su estado, convenciones y herramientas en runtime y resuelve todas las
+        variables con valores reales; resuelve siempre el risk_tier y lanza /htmlvspec
+        automaticamente solo si risk_tier != lite. Triggers prompt template, spec fuente,
+        plan visual, generar spec, htmlvspec source.
+      source: https://github.com/CSBejarano/adw-minion-pi/blob/main/.claude/commands/prompt_template.md
+      requires: [skill:htmlvspec]
+
     # === Issues / Project management ===
     - name: issues-dossier
       description: >-
