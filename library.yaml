@@ -151,6 +151,19 @@ library:
       source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/skills/htmlvspec/SKILL.md
       requires: []
 
+    - name: planf3
+      description: >-
+        Crea un plan de implementacion de ingenieria HTML-first como una unica pagina
+        .html autocontenida en specs/<slug>.html, con identidad visual sincronizada (CSS
+        :root) e imagenes generadas por IA (gpt-image via OpenAI) embebidas por seccion.
+        Pensada para la triada de agentes (ingeniero, equipo, agentes IA): crear,
+        actualizar, referenciar y construir el plan. 4 workflows (create-plan, update-plan,
+        update-references, build-plan) + subworkflow image-generation. Scripts y workflows
+        autocontenidos en la skill. Requiere OPENAI_API_KEY y uv. Traducida al espanol.
+        Triggers planf3, plan de implementacion, spec html, plan html, build plan.
+      source: https://github.com/CSBejarano/planf3/blob/main/.claude/skills/planf3/SKILL.md
+      requires: []
+
     - name: mermaid
       description: >-
         Render Mermaid code to PNG, SVG or PDF diagrams via mmdc CLI. Supports
