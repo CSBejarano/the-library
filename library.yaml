@@ -238,6 +238,20 @@ library:
       requires: []
 
     # === Issues / Project management ===
+    - name: batch_issues
+      description: >-
+        Lista los issues de GitHub, los clasifica (nivel epica/issue + tipo
+        feature/bug/security/docs/chore/database/integration), los agrupa en batches por
+        orden de dependencias, genera un plan visual HTML para aprobacion humana, e
+        implementa cada batch con adw_minion_batch.py y auto-merge -- llevando cada issue de
+        PENDING a DONE en un .yaml de estado con nombre timestamp+state_id. Autonoma (scripts
+        e imagenes vendorizados). Incluye workflows para credenciales (issues integration
+        MCP/API/CLI via credential_scope), preflight fail-fast y uso de gh. Requiere el
+        runtime ADW (adw_minion_batch.py, batch_dependency_planner.py) en el repo destino.
+        Triggers batch issues, implementar issues en batches, batch de issues, procesar issues.
+      source: https://github.com/CSBejarano/adw-minion-pi/blob/main/.claude/skills/batch_issues/SKILL.md
+      requires: []
+
     - name: issues-dossier-proyectos
       description: >-
         Genera el dossier multi-proyecto de issues de GitHub de TODO StudioTek (clientes +
