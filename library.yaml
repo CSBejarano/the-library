@@ -413,6 +413,19 @@ library:
 
   prompts:
     # === ADW / Installer ===
+    - name: gen-batch-runner
+      description: >-
+        Genera un script wrapper (bash) en scripts/ que lanza el runner ADW
+        (adw_minion_batch) sobre un set de issues o un milestone, para correrlo en la
+        TERMINAL del usuario (fuera del limite de tiempo de Claude Code, donde una corrida
+        entera no cabe). Dry-run + confirmacion + execute + resume. NO ejecuta el runner;
+        solo genera el .sh. Portable: detecta el toolchain de validacion del repo destino.
+        Requiere el runtime ADW instalado (adws/adw_minion_batch.py) -- usar /instalador_adw
+        o la skill batch_issues si falta. Triggers gen-batch-runner, generar runner de batch,
+        wrapper adw, lanzar issues en terminal.
+      source: https://github.com/CSBejarano/adw-minion-pi/blob/main/.claude/commands/gen-batch-runner.md
+      requires: []
+
     - name: instalador_adw
       description: >-
         Instala ADW desde el repo destino (target-side) con source hibrido
