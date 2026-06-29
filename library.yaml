@@ -474,6 +474,19 @@ library:
       requires: []
 
     # === Reuniones / Cliente-facing ===
+    - name: alcance-pdf
+      description: >-
+        Genera un documento de alcance funcional CLIENTE-FACING en PDF brandeado
+        (StudioTek) a partir de un milestone de GitHub, una lista de issues o una
+        descripcion libre del alcance. Traduce la jerga tecnica a lenguaje llano
+        (tablas Ref. | Que hace | Que problema resuelve hoy, agrupadas por bloque)
+        con callouts de dependencias y de a-confirmar. Motor canonico
+        commercial-proposal con fallback self-contained (PEP-723 + weasyprint CLI):
+        corre en cualquier repo solo con uv. Portable, runtime. Triggers alcance
+        pdf, documento de alcance, scope cliente, explicar issues a cliente.
+      source: https://github.com/CSBejarano/claude-code-template/blob/main/.claude/commands/alcance-pdf.md
+      requires: [skill:commercial-proposal]
+
     - name: procesar-reunion
       description: >-
         Procesa el audio de una reunion de cliente end-to-end: transcribe (Whisper),
