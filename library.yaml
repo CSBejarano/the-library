@@ -413,6 +413,21 @@ library:
 
   prompts:
     # === ADW / Installer ===
+    - name: adw-rescue
+      description: >-
+        Rescata un run ADW que murio o fallo la validacion de specs: autopsia del run
+        via comentarios [ADW-BOT] del issue (killed vs validacion fallida), verifica el
+        contrato de relanzamiento con grep sobre el runtime ADW real, repara el bundle
+        SDD a mano con el modelo de la sesion (sin regenerar — el planner pisaria el
+        bundle), actualiza el state honesto (valid=true firmado manual_review, tdd_required
+        = verdict mas exigente), deja base fresca segura (byte-identidad antes de reset)
+        y entrega el comando de relanzamiento SIN lanzarlo (human-in-the-loop). Template
+        runtime PORTABLE: descubre git_root, adw_dir, worktree y state en runtime; degrada
+        con elegancia si el proyecto no tiene ADW. Triggers adw rescue, rescatar adw,
+        plan adw fallido, run adw muerto, spec validation failed, relanzar adw.
+      source: https://github.com/CSBejarano/adw-minion-pi/blob/main/.claude/commands/adw-rescue.md
+      requires: []
+
     - name: gen-batch-runner
       description: >-
         Genera un script wrapper (bash) en scripts/ que lanza el runner ADW
